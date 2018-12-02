@@ -32,15 +32,16 @@ def englishNumber(num)
 end
 
 def englishToIllion(num, zeros)
-  higher_places = ["thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion", "septillion", "octillion", "nonillion", "decillion"]
+  higher_places = ["thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion", "septillion", "octillion", "nonillion", "decillion","undecillion","duodecillion","tredecillion","quattuordecillion","quindecillion","sexdecillion","septen-decillion","octodecillion","novemdecillion","vigintillion"]
   num_string = ""
   div_string = "1"
   zeros.times do 
     div_string += "0"
   end
   illions = num / div_string.to_i
-  num = num - illions * div_string.to_i
-  if illions >= 1000
+  if zeros/3 - 1 > 20
+    zeros = 63
+    illions = num / 1000000000000000000000000000000000000000000000000000000000000000
     num_string += "#{englishNumber(illions)}#{higher_places[zeros/3 - 1]} "
   else
     num_string += "#{englishTranslate(illions)}#{higher_places[zeros/3 - 1]} "
