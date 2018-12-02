@@ -3,7 +3,6 @@ user_input = ""
 def englishNumber(num)
   num_string = ""
   write = 0
-
   if num == 0
     return "zero"
   elsif num < 0
@@ -11,50 +10,19 @@ def englishNumber(num)
     num = num * -1
   end
   while num > 0
-    if num >= 1000000000000000000000000000000000
-      write = num / 1000000000000000000000000000000000
-      num_string += englishToIllion(num , 33)
-      num = num - write * 1000000000000000000000000000000000
-    elsif num >= 1000000000000000000000000000000
-      write = num / 1000000000000000000000000000000
-      num_string += englishToIllion(num , 30)
-      num = num - write * 1000000000000000000000000000000
-    elsif num >= 1000000000000000000000000000
-      write = num / 1000000000000000000000000000
-      num_string += englishToIllion(num , 27)
-      num = num - write * 1000000000000000000000000000
-    elsif num >= 1000000000000000000000000
-      write = num / 1000000000000000000000000
-      num_string += englishToIllion(num , 24)
-      num = num - write * 1000000000000000000000000
-    elsif num >= 1000000000000000000000
-      write = num / 1000000000000000000000
-      num_string += englishToIllion(num , 21)
-      num = num - write * 1000000000000000000000
-    elsif num >= 1000000000000000000
-      write = num / 1000000000000000000
-      num_string += englishToIllion(num , 18)
-      num = num - write * 1000000000000000000
-    elsif num >= 1000000000000000
-      write = num / 1000000000000000
-      num_string += englishToIllion(num , 15)
-      num = num - write * 1000000000000000
-    elsif num >= 1000000000000
-      write = num / 1000000000000
-      num_string += englishToIllion(num , 12)
-      num = num - write * 1000000000000
-    elsif num >= 1000000000
-      write = num / 1000000000
-      num_string += englishToIllion(num , 9)
-      num = num - write * 1000000000
-    elsif num >= 1000000
-      write = num / 1000000
-      num_string += englishToIllion(num , 6)
-      num = num - write * 1000000
-    elsif num >= 1000
-      write = num / 1000
-      num_string += englishToIllion(num , 3)
-      num = num - write * 1000
+    div_string = "1"
+    if num >= 1000
+      zeros = num.to_s.strip.length - 1
+      if zeros % 3 == 0
+        num_string += englishToIllion(num, zeros)
+        num = num.to_s.split(//).slice(1..-1).join.to_i
+      elsif zeros % 3 == 1
+        num_string += englishToIllion(num, zeros - 1)
+        num = num.to_s.split(//).slice(2..-1).join.to_i
+      else
+        num_string += englishToIllion(num, zeros - 2)
+        num = num.to_s.split(//).slice(3..-1).join.to_i
+      end
     else
       num_string += englishTranslate(num)
       num = 0
